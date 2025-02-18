@@ -5,7 +5,11 @@ Instructions:
 4. Create container: docker compose up
 5. Run my_dag.py
 6. To check tables: 
+
         - access container: docker exec -it <containerid> psql -U <username> -d <dbname>
+
         - list tables: \dt
+
         - exit: \q
+        
         - to view content: select * from customer;
