@@ -1,5 +1,8 @@
 from airflow import DAG
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
+from great_expectations_provider.operators.great_expectations import (
+    GreatExpectationsOperator,
+)
 from datetime import datetime
 
 
@@ -28,4 +31,13 @@ with DAG(
         sql="sql/load.sql"
     )
 
-    drop_table >> create_table >> load_table
+    validate = GreatExpectationsOperator(
+        task_id = "gx_validate",
+        conn_id = 'my_postgres',
+        data_context_root_dir="include/gx",
+        data_asset_name="postgres.customer",
+        expectation_suite_name="strawberry_suite",
+        return_json_dict=True,
+    )
+
+    drop_table >> create_table >> load_table >> validate
