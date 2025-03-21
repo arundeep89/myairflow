@@ -10,6 +10,12 @@ with DAG(
     catchup=False
 ) as dag:
     
+    drop_table = SQLExecuteQueryOperator(
+        task_id="drop_table",
+        conn_id="my_postgres",
+        sql="DROP TABLE IF EXISTS customer"
+    )
+    
     create_table = SQLExecuteQueryOperator(
         task_id="create_table",
         conn_id="my_postgres",
@@ -22,4 +28,4 @@ with DAG(
         sql="sql/load.sql"
     )
 
-    create_table
+    drop_table >> create_table >> load_table
