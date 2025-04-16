@@ -1,2 +1,5 @@
 airflow-provider-great-expectations==0.2.7
 great_expectations==0.18.21
+apache-airflow[virtualenv]
+cloudpickle
+
