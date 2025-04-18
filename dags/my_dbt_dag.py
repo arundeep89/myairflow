@@ -19,7 +19,7 @@ default_args = {
 )
 def my_dag():
     project_dir='/opt/airflow/dbt_example'
-    profile_dir='/opt/airflow/dbt_example/profiles'
+    profile_dir='/opt/airflow/dbt_example'
     # Define dbt tasks using BashOperator
     task1 = BashOperator(
         task_id='dbt_task1',
