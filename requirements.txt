@@ -3,4 +3,6 @@ great_expectations==0.18.21
 apache-airflow[virtualenv]
 cloudpickle
 dbt-postgres==1.5.9
+astronomer-cosmos
+apache-airflow-providers-postgres==5.6.0
 

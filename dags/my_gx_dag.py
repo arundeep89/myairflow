@@ -4,12 +4,12 @@ from datetime import datetime
 
 
 @dag(
-    dag_id="my_dag",
+    dag_id="my_gx_dag",
     start_date = datetime(2025, 2, 1),
     schedule_interval="@once",
     catchup=False
 )
-def my_dag():
+def my_gx_dag():
 
     @task.virtualenv(
         task_id="virtualenv_python", requirements=["great_expectations"], system_site_packages=False
@@ -72,4 +72,4 @@ def my_dag():
 
     drop_table >> create_table >> load_table >> callable_virtualenv()
 
-my_dag()
+my_gx_dag()
